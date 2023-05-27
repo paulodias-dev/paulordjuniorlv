@@ -11,33 +11,37 @@
             <div class="row">
                 <div class="mb-3 col-md-4">
                     <label for="name" class="form-label">name</label>
-                    <input type="text" class="form-control  @error('name') is-invalid @enderror" id="name" name="name" aria-describedby="nameHelp" required autofocus>
+                    <input type="text" class="form-control  @error('name') is-invalid @enderror" id="name"
+                        name="name" aria-describedby="nameHelp" value="{{ old('name') }}" minlength="6" required autofocus>
                     <div id="nameHelp" class="form-text">Insert name of contact</div>
                     @error('name')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
                 <div class="mb-3 col-md-4">
                     <label for="phone" class="form-label">Phone</label>
-                    <input type="text" class="form-control  @error('phone') is-invalid @enderror" id="phone" name="phone" aria-describedby="phoneHelp" required>
+                    <input type="text" class="form-control  @error('phone') is-invalid @enderror" id="phone"
+                        pattern="\d{9}" maxlength="9" minlength="9" name="phone" aria-describedby="phoneHelp"
+                        value="{{ old('phone') }}" required>
                     <div id="phoneHelp" class="form-text">Insert phone of contact</div>
                     @error('phone')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
                 <div class="mb-3 col-md-4">
                     <label for="email" class="form-label">Email address</label>
-                    <input type="email" class="form-control  @error('email') is-invalid @enderror" id="email" name="email" aria-describedby="emailHelp" required>
+                    <input type="email" class="form-control  @error('email') is-invalid @enderror" id="email"
+                        name="email" aria-describedby="emailHelp" value="{{ old('email') }}" required>
                     <div id="emailHelp" class="form-text">Insert email address of contact</div>
                     @error('email')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
                 </div>
 
                 <div class="col-md-12 offset-md-0 mt-5">
