@@ -50,8 +50,8 @@ class ContactController extends Controller
     public function store(ContactRequest  $request)
     {
         try {
-            Contact::create($request->all());
-            return view('pages.contact.create', ['success' => 'Registration completed successfully!']);
+            $data = Contact::create($request->all());
+            return redirect()->route('contact.show', $data->id)->with('success', 'Registration completed successfully!');
         } catch (QueryException $e) {
             return view('pages.contact.create', ['failed' => 'Failed to register.']);
         }
