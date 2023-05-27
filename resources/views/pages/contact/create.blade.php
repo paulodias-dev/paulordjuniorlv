@@ -6,13 +6,41 @@
             <h1 class="h2">Create contact</h1>
         </div>
 
+
+        @if(isset($failed))
+            <div class="alert alert-danger d-flex align-items-center p-5 mb-10">
+                <span class="svg-icon svg-icon-2hx svg-icon-primary me-3">
+                    <i class="bi bi-exclamation-triangle fs-3x"></i>
+                </span>
+
+                <div class="d-flex flex-column">
+                    <h5 class="mb-1">Error!</h5>
+                    <span>{{ $failed }}</span>
+                </div>
+            </div>
+        @endif
+
+        @if(isset($success))
+            <div class="alert alert-success d-flex align-items-center p-5 mb-10">
+                <span class="svg-icon svg-icon-2hx svg-icon-primary me-3">
+                    <i class="bi bi-exclamation-triangle fs-3x"></i>
+                </span>
+
+                <div class="d-flex flex-column">
+                    <h5 class="mb-1">Success!</h5>
+                    <span>{{ $success }}</span>
+                </div>
+            </div>
+        @endif
+
         <form method="POST" action="{{ route('contact.store') }}">
             @csrf
             <div class="row">
                 <div class="mb-3 col-md-4">
                     <label for="name" class="form-label">name</label>
                     <input type="text" class="form-control  @error('name') is-invalid @enderror" id="name"
-                        name="name" aria-describedby="nameHelp" value="{{ old('name') }}" minlength="6" required autofocus>
+                        name="name" aria-describedby="nameHelp" value="{{ old('name') }}" minlength="6" required
+                        autofocus>
                     <div id="nameHelp" class="form-text">Insert name of contact</div>
                     @error('name')
                         <span class="invalid-feedback" role="alert">

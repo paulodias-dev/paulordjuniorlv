@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ContactRequest;
+use App\Models\Contact;
+use Illuminate\Database\QueryException;
 
 class ContactController extends Controller
 {
@@ -46,7 +48,12 @@ class ContactController extends Controller
      */
     public function store(ContactRequest  $request)
     {
-        return response()->json(['data' => $request->all()], 200);
+        try {
+            Contact::create($request->all());
+            return view('pages.contact.create', ['success' => 'Registration completed successfully!']);
+        } catch (QueryException $e) {
+            return view('pages.contact.create', ['failed' => 'Failed to register.']);
+        }
     }
 
     /**
