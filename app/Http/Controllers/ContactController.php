@@ -27,7 +27,8 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        $contacts = Contact::paginate(2);
+        return view('pages.contact.index', compact('contacts'));
     }
 
     /**
@@ -62,9 +63,9 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Contact $contact)
     {
-        //
+        return view('pages.contact.show', compact('contact'));
     }
 
     /**
@@ -87,7 +88,12 @@ class ContactController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            Contact::find($id)->update($request->all());
+            return back()->with('success', 'Update completed successfully!');
+        } catch (QueryException $e) {
+            return back()->with('failed', 'Failed to update.');
+        }
     }
 
     /**

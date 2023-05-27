@@ -16,6 +16,32 @@
 
 
 
-    asdfafdfdas
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse($contacts as $contact)
+            <tr>
+                <th scope="row">{{ $contact->id }}</th>
+                <td>{{ $contact->name }}</td>
+                <td>{{ $contact->phone }}</td>
+                <td>{{ $contact->email }}</td>
+            </tr>
+            @empty
+            <tr>
+                <td colspan="4">No contacts found.</td>
+            </tr>
+            @endforelse
+        </tbody>
+    </table>
+
+    {{ $contacts->links() }}
+
 </main>
 @endsection
