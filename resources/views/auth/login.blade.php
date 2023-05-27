@@ -15,7 +15,7 @@
 
             <div class="form-floating">
                 <input type="email" id="email" class="form-control  @error('email') is-invalid @enderror"
-                    id="email" placeholder="name@example.com" name="email" value="{{ old('email') }}" autofocus>
+                    id="email" placeholder="name@example.com" name="email" value="{{ old('email') }}" required autofocus>
                 <label for="email">{{ __('Email Address') }}</label>
                 @error('email')
                     <span class="invalid-feedback" role="alert">
