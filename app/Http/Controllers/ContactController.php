@@ -27,7 +27,7 @@ class ContactController extends Controller
      */
     public function index()
     {
-        $contacts = Contact::paginate(2);
+        $contacts = Contact::all();
         return view('pages.contact.index', compact('contacts'));
     }
 
@@ -76,7 +76,8 @@ class ContactController extends Controller
      */
     public function edit($id)
     {
-        //
+        $contact = Contact::find($id);
+        return view('pages.contact.edit', compact('contact'));
     }
 
     /**
@@ -90,7 +91,7 @@ class ContactController extends Controller
     {
         try {
             Contact::find($id)->update($request->all());
-            return back()->with('success', 'Update completed successfully!');
+            return redirect()->route('contact.show', $id)->with('success', 'Contato excluído com sucesso.');
         } catch (QueryException $e) {
             return back()->with('failed', 'Failed to update.');
         }

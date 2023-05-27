@@ -41,7 +41,5 @@
         </tbody>
     </table>
 
-    {{ $contacts->links() }}
-
 </main>
 @endsection

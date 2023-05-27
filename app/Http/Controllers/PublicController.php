@@ -9,7 +9,7 @@ class PublicController extends Controller
 {
     public function index ()
     {
-        $contacts = Contact::paginate(10);
+        $contacts = Contact::all();
         return view('dashboard', compact('contacts'));
     }
 }

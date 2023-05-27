@@ -16,6 +16,7 @@
                         <th scope="col">Email</th>
                         <th scope="col">Delete</th>
                         <th scope="col">Edit</th>
+                        <th scope="col">Show</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,8 +34,8 @@
                                     <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                 </form>
                             </td>
-                            <td><a href="{{ route('contact.show', $contact->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                            </td>
+                            <td><a href="{{ route('contact.edit', $contact->id) }}" class="btn btn-primary btn-sm">Edit</a></td>
+                            <td><a href="{{ route('contact.show', $contact->id) }}" class="btn btn-info btn-sm">Show</a></td>
                         </tr>
                     @empty
                         <tr>
@@ -43,8 +44,6 @@
                     @endforelse
                 </tbody>
             </table>
-
-            {{ $contacts->links() }}
 
         </div>
 
