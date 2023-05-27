@@ -25,8 +25,16 @@
                             <td>{{ $contact->name }}</td>
                             <td>{{ $contact->phone }}</td>
                             <td>{{ $contact->email }}</td>
-                            <td><a href="{{ route('contact.destroy', $contact->id) }}" class="btn btn-danger btn-sm">Delete</a></td>
-                            <td><a href="{{ route('contact.show', $contact->id) }}" class="btn btn-primary btn-sm">Edit</a></td>
+                            <td>
+                                <form action="{{ route('contact.destroy', $contact->id) }}" method="POST"
+                                    onsubmit="return confirmDelete()">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                            </td>
+                            <td><a href="{{ route('contact.show', $contact->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                            </td>
                         </tr>
                     @empty
                         <tr>

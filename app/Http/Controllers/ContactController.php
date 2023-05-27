@@ -104,6 +104,11 @@ class ContactController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            Contact::find($id)->delete();
+            return redirect()->route('contact.index')->with('success', 'Contato excluído com sucesso.');
+        } catch (QueryException $e) {
+            return back()->with('failed', 'Falha ao excluir o contato.');
+        }
     }
 }

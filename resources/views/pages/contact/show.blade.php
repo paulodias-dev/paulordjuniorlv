@@ -33,6 +33,7 @@
             </div>
         @endif
 
+
         <form method="POST" action="{{ route('contact.update', $contact->id) }}">
             @csrf
             @method('PUT')
@@ -73,10 +74,26 @@
                     @enderror
                 </div>
 
-                <div class="col-md-12 offset-md-0 mt-5">
-                    <button type="reset" class="btn btn-secondary">Reset</button>
-                    <button type="submit" class="btn btn-primary">Update</button>
+                <div class="row mt-5">
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-start">
+                            <button type="reset" class="btn btn-secondary m-1">Reset</button>
+                            <button type="submit" class="btn btn-primary m-1">Update</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex justify-content-end">
+                            <form action="{{ route('contact.destroy', $contact->id) }}" method="POST"
+                                onsubmit="return confirmDelete()">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
+
+
 
             </div>
         </form>
